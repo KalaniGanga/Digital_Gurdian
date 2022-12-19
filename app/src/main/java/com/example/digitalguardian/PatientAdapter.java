@@ -35,6 +35,7 @@ public class PatientAdapter extends ArrayAdapter<Patient> {
         TextView temperatureTextView = convertView.findViewById(R.id.tem_text);
         TextView descTextView = convertView.findViewById(R.id.desc_text);
         TextView genderTextView = convertView.findViewById(R.id.gender_text);
+        TextView indexTextView = convertView.findViewById(R.id.index_text);
 
 
 
@@ -43,6 +44,7 @@ public class PatientAdapter extends ArrayAdapter<Patient> {
         temperatureTextView.setText(String.valueOf(patientList.get(position).getTemperature()));
         descTextView.setText(patientList.get(position).getDesc());
         genderTextView.setText(patientList.get(position).getGender());
+        indexTextView.setText(patientList.get(position).getIndex());
 
         return convertView;
     }
