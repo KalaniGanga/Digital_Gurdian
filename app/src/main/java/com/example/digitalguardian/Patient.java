@@ -6,6 +6,7 @@ public class Patient {
     private int temperature;
     private String desc;
     private String gender;
+    private String index;
 
 
     public String getName() {
@@ -28,12 +29,17 @@ public class Patient {
         return gender;
     }
 
-    public Patient(String name, int roomNumber, int temperature, String desc, String gender) {
+    public String getIndex() {
+        return index;
+    }
+
+    public Patient(String index, String name, int roomNumber, int temperature, String desc, String gender) {
         this.name = name;
         this.roomNumber = roomNumber;
         this.temperature = temperature;
         this.desc = desc;
         this.gender = gender;
+        this.index = index;
 
     }
 
