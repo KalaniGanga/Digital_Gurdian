@@ -1,7 +1,9 @@
 package com.example.digitalguardian;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String SERVER_URI = "tcp://test.mosquitto.org:1883";
     private static final String TAG = "MainActivity";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,16 +39,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         patientList = new ArrayList<>();
-        patientList.add(new Patient("1234","Kalani Ganga Parapitiya",01,31,"this is test","Female"));
-        patientList.add(new Patient("5678","Poornima Mayadunna",02,34,"this is test", "Female"));
-        patientList.add(new Patient("9012","Laksha Silva",03,37,"this is test","Female"));
+        patientList.add(new Patient("12341234","Sweda Larsson",01,31,"this is test","Female", R.drawable.old_women_1,98));
+        patientList.add(new Patient("56782345","Mark Karlsson",02,34,"this is test", "Male", R.drawable.old_man_1,91));
+        patientList.add(new Patient("90126745","Lucas Jonsson",03,37,"this is test","Male", R.drawable.old_man_2,92));
+        patientList.add(new Patient("12341234","Sweda Larsson",01,31,"this is test","Female", R.drawable.old_women_1,101));
+        patientList.add(new Patient("56782345","Mark Karlsson",02,34,"this is test", "Male", R.drawable.old_man_1,90));
+        patientList.add(new Patient("90126745","Lucas Jonsson",03,37,"this is test","Male", R.drawable.old_man_2,109));
         System.out.println(patientList);
         //setting adapter and listview
         PatientAdapter adapter = new PatientAdapter(getApplicationContext(),
                 R.layout.activity_listview, patientList);
         ListView listview = findViewById(R.id.patient_list);
         listview.setAdapter(adapter);
-
+        listview.setScrollContainer(true);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -102,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             IMqttToken token = client.connect();
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
+            System.out.println(token.getActionCallback());
             token.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
@@ -117,9 +125,12 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "onFailure");
                     System.out.println(TAG + " Oh no! Failed to connect to " +
                             SERVER_URI);
+                    System.out.println("%%%%%%%%%%%%%%%%%%%");
                 }
             });
         } catch (MqttException e) {
+            System.out.println("**********************");
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }

@@ -1,5 +1,7 @@
 package com.example.digitalguardian;
 
+import android.graphics.drawable.Drawable;
+
 public class Patient {
     private String name;
     private int roomNumber;
@@ -7,7 +9,8 @@ public class Patient {
     private String desc;
     private String gender;
     private String index;
-
+    private int src;
+    private int bpm;
 
     public String getName() {
         return name;
@@ -33,13 +36,23 @@ public class Patient {
         return index;
     }
 
-    public Patient(String index, String name, int roomNumber, int temperature, String desc, String gender) {
+    public int getSrc() {
+        return src;
+    }
+
+    public int getBpm() {
+        return bpm;
+    }
+
+    public Patient(String index, String name, int roomNumber, int temperature, String desc, String gender, int src, int bpm) {
         this.name = name;
         this.roomNumber = roomNumber;
         this.temperature = temperature;
         this.desc = desc;
         this.gender = gender;
         this.index = index;
+        this.src = src;
+        this.bpm = bpm;
 
     }
 

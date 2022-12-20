@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,8 +37,8 @@ public class PatientAdapter extends ArrayAdapter<Patient> {
         TextView descTextView = convertView.findViewById(R.id.desc_text);
         TextView genderTextView = convertView.findViewById(R.id.gender_text);
         TextView indexTextView = convertView.findViewById(R.id.index_text);
-
-
+        ImageView srcTextView = convertView.findViewById(R.id.profile_image);
+        TextView bpmTextView = convertView.findViewById(R.id.bpm_text);
 
         nameTextView.setText(patientList.get(position).getName());
         roomNumberTextView.setText(String.valueOf(patientList.get(position).getRoomNumber()));
@@ -45,6 +46,8 @@ public class PatientAdapter extends ArrayAdapter<Patient> {
         descTextView.setText(patientList.get(position).getDesc());
         genderTextView.setText(patientList.get(position).getGender());
         indexTextView.setText(patientList.get(position).getIndex());
+        bpmTextView.setText(String.valueOf(patientList.get(position).getBpm()) );
+        srcTextView.setImageResource(patientList.get(position).getSrc());
 
         return convertView;
     }
